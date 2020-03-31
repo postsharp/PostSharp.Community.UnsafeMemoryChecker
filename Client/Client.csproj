@@ -1,0 +1,16 @@
+<Project>
+    <Import Project="Sdk.props" Sdk="Microsoft.NET.Sdk" />
+
+    <PropertyGroup>
+        <TargetFramework>netstandard2.0</TargetFramework>
+        <GenerateDocumentationFile>true</GenerateDocumentationFile>
+        <RootNamespace>PostSharp.Community.HelloWorld</RootNamespace>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <!-- We need this to use the PostSharp MulticastAttribute: -->
+      <PackageReference Include="PostSharp.Redist" Version="6.6.3-preview" />
+    </ItemGroup>
+    
+    <Import Project="Sdk.targets" Sdk="Microsoft.NET.Sdk" />
+</Project>
