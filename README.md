@@ -1,4 +1,4 @@
-## ![](icon.png) &nbsp; PostSharp.Community.UnsafeMemoryChecker 
+## <img src="https://image.flaticon.com/icons/svg/609/609950.svg" width="32"> &nbsp; PostSharp.Community.UnsafeMemoryChecker 
 Throws an exception if your unsafe code attempts to write to memory you don't control.
 
 **Your concern:** You're using unsafe code and pointer arithmetic and it could happen to you that your code writes to memory that you're not supposed to write into. If you're lucky, this will trigger a memory access violation and crash. But it could also happen that you will only notice the error much later.

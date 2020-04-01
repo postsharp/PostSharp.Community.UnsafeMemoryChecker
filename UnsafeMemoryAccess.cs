@@ -34,6 +34,14 @@ namespace PostSharp.Community.UnsafeMemoryChecker
             return DelegatedUnsafeMemoryAccess.GetLiveAddress(allocAddress);
         }
 
+        /// <summary>
+        /// Marks a memory segment as being safe to write into.
+        /// </summary>
+        /// <param name="allocAddress">The address where the memory segment begins.</param>
+        /// <param name="allocSize">The size of the contiguous memory segment, in bytes.</param>
+        /// <param name="memberName">Auto-filled-in by compiler.</param>
+        /// <param name="sourceFilePath">Auto-filled-in by compiler.</param>
+        /// <param name="sourceLineNumber">Auto-filled-in by compiler.</param>
         [Conditional( "CHECK_UNSAFE_MEMORY" )]
         public static void AddSafeSegment( void* allocAddress, int allocSize,
                                            [System.Runtime.CompilerServices.CallerMemberName] string memberName = "",
@@ -43,16 +51,6 @@ namespace PostSharp.Community.UnsafeMemoryChecker
             DelegatedUnsafeMemoryAccess.AddSafeSegment(allocAddress, allocSize, memberName, sourceFilePath, sourceLineNumber);
         }
 
-        /// <summary>
-        /// Marks a memory segment as being safe to write into.
-        /// </summary>
-        /// <param name="allocAddress">The address where the memory segment begins.</param>
-        /// <param name="allocSize">The size of the contiguous memory segment, in bytes.</param>
-        /// <param name="liveAddress"></param>
-        /// <param name="liveSize"></param>
-        /// <param name="memberName"></param>
-        /// <param name="sourceFilePath"></param>
-        /// <param name="sourceLineNumber"></param>
         [Conditional( "CHECK_UNSAFE_MEMORY" )]
         public static void AddSafeSegment( void* allocAddress, int allocSize, void* liveAddress, int liveSize,
                                            [System.Runtime.CompilerServices.CallerMemberName] string memberName = "",
@@ -62,6 +60,14 @@ namespace PostSharp.Community.UnsafeMemoryChecker
             AddSafeSegment( (IntPtr) allocAddress, allocSize, (IntPtr) liveAddress, liveSize, memberName, sourceFilePath, sourceLineNumber );
         }
 
+        /// <summary>
+        /// Marks a memory segment as being safe to write into.
+        /// </summary>
+        /// <param name="allocAddress">The address where the memory segment begins.</param>
+        /// <param name="allocSize">The size of the contiguous memory segment, in bytes.</param>
+        /// <param name="memberName">Auto-filled-in by compiler.</param>
+        /// <param name="sourceFilePath">Auto-filled-in by compiler.</param>
+        /// <param name="sourceLineNumber">Auto-filled-in by compiler.</param>
         [Conditional( "CHECK_UNSAFE_MEMORY" )]
         public static void AddSafeSegment( IntPtr allocAddress, int allocSize,
                                            [System.Runtime.CompilerServices.CallerMemberName] string memberName = "",
@@ -80,6 +86,13 @@ namespace PostSharp.Community.UnsafeMemoryChecker
             DelegatedUnsafeMemoryAccess.AddSafeSegment(allocAddress, allocSize, liveAddress, liveSize, memberName, sourceFilePath, sourceLineNumber);
         }
 
+        /// <summary>
+        /// Unmarks a memory segment so that writing to that segment would trigger access violation exceptions again.
+        /// </summary>
+        /// <param name="address">The address where the memory segment begins.</param>
+        /// <param name="memberName">Auto-filled-in by compiler.</param>
+        /// <param name="sourceFilePath">Auto-filled-in by compiler.</param>
+        /// <param name="sourceLineNumber">Auto-filled-in by compiler.</param>
         [Conditional( "CHECK_UNSAFE_MEMORY" )]
         public static void RemoveSafeSegment( void* address,
                                               [System.Runtime.CompilerServices.CallerMemberName] string memberName = "",
@@ -88,7 +101,14 @@ namespace PostSharp.Community.UnsafeMemoryChecker
         {
             RemoveSafeSegment( (IntPtr) address, memberName, sourceFilePath, sourceLineNumber );
         }
-
+        
+        /// <summary>
+        /// Unmarks a memory segment so that writing to that segment would trigger access violation exceptions again.
+        /// </summary>
+        /// <param name="address">The address where the memory segment begins.</param>
+        /// <param name="memberName">Auto-filled-in by compiler.</param>
+        /// <param name="sourceFilePath">Auto-filled-in by compiler.</param>
+        /// <param name="sourceLineNumber">Auto-filled-in by compiler.</param>
         [Conditional( "CHECK_UNSAFE_MEMORY" )]
         public static void RemoveSafeSegment( IntPtr address,
                                               [System.Runtime.CompilerServices.CallerMemberName] string memberName = "",
