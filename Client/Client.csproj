@@ -4,7 +4,9 @@
     <PropertyGroup>
         <TargetFramework>netstandard2.0</TargetFramework>
         <GenerateDocumentationFile>true</GenerateDocumentationFile>
-        <RootNamespace>PostSharp.Community.HelloWorld</RootNamespace>
+        <RootNamespace>PostSharp.Community.UnsafeMemoryChecker</RootNamespace>
+        <AssemblyName>PostSharp.Community.UnsafeMemoryChecker</AssemblyName>
+        <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     </PropertyGroup>
 
     <ItemGroup>

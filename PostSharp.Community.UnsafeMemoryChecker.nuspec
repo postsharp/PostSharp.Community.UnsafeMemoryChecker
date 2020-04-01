@@ -1,31 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
 <package>
   <metadata>
-    <id>PostSharp.Community.HelloWorld</id>
-    <version>1.2-preview</version>
-    <title>PostSharp.Community.HelloWorld</title>
-    <authors></authors>
-    <owners></owners>
+    <id>PostSharp.Community.UnsafeMemoryChecker</id>
+    <version>1.0-preview</version>
+    <title>PostSharp.Community.UnsafeMemoryChecker</title>
+    <authors>PostSharp Technologies</authors>
+    <owners>PostSharp Technologies</owners>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
-    <license type="expression">Unlicense</license>
-    <projectUrl>https://github.com/postsharp/PostSharp.Community.HelloWorld</projectUrl>
+    <license type="expression">MIT</license>
+    <projectUrl>https://github.com/postsharp/PostSharp.Community.UnsafeMemoryChecker</projectUrl>
     <icon>icon.png</icon>
-    <description>An example PostSharp add-in that adds Console.WriteLine("Hello World!") to every method annotated with [HelloWorld].</description>
+    <description>Throws an exception if your unsafe code attempts to write to memory you don't control</description>
     <releaseNotes>Initial release.</releaseNotes>
-    <copyright></copyright>
-    <tags>postsharp ilweaving addin plugin helloworld</tags>
+    <copyright>SharpCrafters s.r.o.</copyright>
+    <tags>postsharp ilweaving addin unsafe memoryaccessviolation memory</tags>
     <dependencies>
       <group targetFramework=".NETStandard2.0">
-		<!-- PostSharp respects semantic versioning, so it is safe to add a dependency up to the next major version, but not included. -->
         <dependency id="PostSharp" version="[6.6.3-preview,7.0)" />
       </group>
     </dependencies>
+    <contentFiles>
+      <files include="UnsafeMemoryAccess.cs" buildAction="Compile" />
+    </contentFiles>
   </metadata>
 
   <files>
-    <file src="PostSharp.Community.HelloWorld\bin\Release\netstandard2.0\PostSharp.Community.HelloWorld.dll" target="lib\netstandard2.0"/>
-    <file src="PostSharp.Community.HelloWorld\bin\Release\netstandard2.0\PostSharp.Community.HelloWorld.xml" target="lib\netstandard2.0"/>
-    <file src="PostSharp.Community.HelloWorld.Weaver\bin\Release\netstandard2.0\PostSharp.Community.HelloWorld.Weaver.dll" target="tools"/>
+    <file src="Client\bin\Release\netstandard2.0\PostSharp.Community.UnsafeMemoryChecker.dll" target="lib\netstandard2.0"/>
+    <file src="Client\bin\Release\netstandard2.0\PostSharp.Community.UnsafeMemoryChecker.xml" target="lib\netstandard2.0"/>
+    <file src="Weaver\bin\Release\netstandard2.0\PostSharp.Community.UnsafeMemoryChecker.Weaver.dll" target="tools"/>
     <file src="icon.png" target="" />
+    <file src="UnsafeMemoryAccess.cs" target="contentFiles\cs\any" />
   </files>
 </package>

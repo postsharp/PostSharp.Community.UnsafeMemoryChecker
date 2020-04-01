@@ -1,25 +1,22 @@
-﻿﻿using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
- using PostSharp.Extensibility;
- using PostSharp.Reflection;
+using PostSharp.Extensibility;
 using PostSharp.Sdk.CodeModel;
 using PostSharp.Sdk.CodeModel.TypeSignatures;
 using PostSharp.Sdk.CodeWeaver;
 using PostSharp.Sdk.Collections;
 using PostSharp.Sdk.Extensibility;
 
-namespace PostSharp.AddIn.CheckUnsafeMemoryAccess
+namespace PostSharp.Community.UnsafeMemoryChecker.Weaver
 {
 
-    [ExportTask(TaskName = "CheckUnsafeMemoryAccess", LoadOnlyIfRequired = true)]
+    [ExportTask(TaskName = nameof(CheckUnsafeMemoryAccessTask))]
     [TaskDependency("MethodUsageIndexService")]
     [TaskDependency("ImplementationBoundAttributes")]
     [TaskDependency("IndexTypeDefMemberRefs")]
     public sealed class CheckUnsafeMemoryAccessTask : Task, IAdviceRequiringStackStatus
     {
-        private const string wrapperTypeName = "PostSharp.Sdk.Buffers.UnsafeMemoryAccess";
+        private const string wrapperTypeName = "PostSharp.Community.UnsafeMemoryChecker.UnsafeMemoryAccess";
         private TypeDefDeclaration wrapperType;
         readonly Dictionary<OpCodeNumber, IMethod> methods = new Dictionary<OpCodeNumber, IMethod>();
 
@@ -71,7 +68,7 @@ namespace PostSharp.AddIn.CheckUnsafeMemoryAccess
             this.methods.Add(OpCodeNumber.Stind_R4, this.wrapperType.Methods.GetOneByName("StoreSingle").Translate(this.Project.Module));
             this.methods.Add(OpCodeNumber.Stind_R8, this.wrapperType.Methods.GetOneByName("StoreDouble").Translate(this.Project.Module));
 
-            Weaver weaver = new Weaver( this.Project );
+            Sdk.CodeWeaver.Weaver weaver = new Sdk.CodeWeaver.Weaver( this.Project );
             weaver.AddMethodLevelAdvice( this, null, JoinPointKinds.InsteadOfStoreIndirect, null );
             weaver.Weave();
             return base.Execute();
