@@ -76,6 +76,11 @@ to your assembly, and then define the build symbol CHECK_UNSAFE_MEMORY when you 
 `UnsafeMemoryAccess.AddSafeSegment`.
 2. When that memory is no longer safe to write into, unmark it with `UnsafeMemoryAccess.RemoveSafeSegment`.
 
+#### How does this add-in work inside?
+The NuGet package adds a new class, `UnsafeMemoryAccess`, to your project as source code. This class has methods that you use (`AddSafeSegment` and `RemoveSafeSegment`) that are marked with `[Conditional("CHECK_UNSAFE_MEMORY")]` so that they're eliminated out of your code in builds where you need performance.
+
+The add-in also modifies your assembly by going through every method of your assembly and replacing all indirect-write-via-pointer instructions to calls to methods of this `UnsafeMemoryAccess` class. These methods check that you're writing to memory marked safe and throw an exception if not.
+
 #### Copyright notices
 Published under the MIT license.
 

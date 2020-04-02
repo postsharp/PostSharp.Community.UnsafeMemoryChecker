@@ -1,5 +1,4 @@
-// Copyright (c) SharpCrafters s.r.o. This file is not open source. It is released under a commercial
-// source-available license. Please see the LICENSE.md file in the repository root for details.
+// Copyright (c) SharpCrafters s.r.o., licensed under MIT.
 
 using System;
 using System.Diagnostics;
@@ -10,7 +9,8 @@ namespace PostSharp.Community.UnsafeMemoryChecker
 {
     /// <summary>
     /// If enabled, checks memory accesses done via pointers in unsafe code and throws an exception if access to
-    /// uncontrolled memory is attempted. Define the debug symbol CHECK_UNSAFE_MEMORY and and
+    /// uncontrolled memory is attempted. Define the debug symbol CHECK_UNSAFE_MEMORY and add <c>[assembly: CheckUnsafeMemory]</c>
+    /// to enable.
     /// </summary>
     internal static unsafe class UnsafeMemoryAccess
     {
@@ -87,7 +87,7 @@ namespace PostSharp.Community.UnsafeMemoryChecker
         }
 
         /// <summary>
-        /// Unmarks a memory segment so that writing to that segment would trigger access violation exceptions again.
+        /// Unmarks a memory segment so that writing to that segment will trigger access violation exceptions again.
         /// </summary>
         /// <param name="address">The address where the memory segment begins.</param>
         /// <param name="memberName">Auto-filled-in by compiler.</param>
@@ -103,7 +103,7 @@ namespace PostSharp.Community.UnsafeMemoryChecker
         }
         
         /// <summary>
-        /// Unmarks a memory segment so that writing to that segment would trigger access violation exceptions again.
+        /// Unmarks a memory segment so that writing to that segment will trigger access violation exceptions again.
         /// </summary>
         /// <param name="address">The address where the memory segment begins.</param>
         /// <param name="memberName">Auto-filled-in by compiler.</param>
@@ -165,7 +165,7 @@ namespace PostSharp.Community.UnsafeMemoryChecker
             CheckAddress( address, sizeof(float) );
             *address = value;
         }
-
+        
         public static void StoreDouble( double* address, double value )
         {
             CheckAddress( address, sizeof(double) );
