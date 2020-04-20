@@ -2,7 +2,7 @@
 <package>
   <metadata>
     <id>PostSharp.Community.UnsafeMemoryChecker</id>
-    <version>1.1-preview</version>
+    <version>1.2</version>
     <title>PostSharp.Community.UnsafeMemoryChecker</title>
     <authors>PostSharp Technologies</authors>
     <owners>PostSharp Technologies</owners>
@@ -11,12 +11,12 @@
     <projectUrl>https://github.com/postsharp/PostSharp.Community.UnsafeMemoryChecker</projectUrl>
     <icon>icon.png</icon>
     <description>Throws an exception if your unsafe code attempts to write to memory you don't control</description>
-    <releaseNotes>Initial release.</releaseNotes>
+    <releaseNotes>First full non-preview release.</releaseNotes>
     <copyright>SharpCrafters s.r.o.</copyright>
     <tags>postsharp ilweaving addin unsafe memoryaccessviolation memory</tags>
     <dependencies>
       <group targetFramework=".NETStandard2.0">
-        <dependency id="PostSharp" version="[6.6.3-preview,7.0)" />
+        <dependency id="PostSharp" version="[6.6.6,7.0)" />
       </group>
     </dependencies>
   </metadata>
